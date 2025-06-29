@@ -1,0 +1,146 @@
+
+{% load static %}
+{% include 'menu.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Notes</title>
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: #000;
+            background-color: #fff;
+            overflow-x: hidden;
+
+        }
+
+        .dark body {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .note {
+            position: relative;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .dark .note {
+            background-color: #1a1a1a;
+            border-color: #444;
+        }
+
+        .note h3 {
+            margin: 0 0 10px;
+        }
+
+        .note small {
+            color: #777;
+        }
+
+        .note-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .note-buttons a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 13px;
+            margin-left: 5px;
+        }
+
+        .edit-btn {
+            background-color: #464b51;
+        }
+
+        .delete-btn {
+            background-color: #020202;
+        }
+
+        .note-buttons a:hover {
+            opacity: 0.85;
+        }
+
+        .read-more-btn {
+            color: #000000;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .dark .read-more-btn {
+            color: #0a0a0a;
+        }
+    </style>
+</head>
+<body>
+
+{% if notes %}
+    <div class="container">
+        <h2>All Notes</h2>
+
+        {% for note in notes %}
+        <div class="note">
+            <!-- Edit/Delete buttons -->
+            <div class="note-buttons">
+                <a href="{% url 'edit_note' note.id %}" class="edit-btn">Edit</a>
+                <a href="{% url 'delete_note' note.id %}" class="delete-btn">Delete</a>
+            </div>
+
+            <!-- Note Title -->
+            <h3>{{ note.title }}</h3>
+
+            <!-- Truncated Note Content with Toggle -->
+            <p class="note-content" id="note-{{ note.id }}">
+                {{ note.content|truncatechars:150 }}
+                {% if note.content|length > 150 %}
+                <span class="dots">...</span>
+                <span class="more-text" style="display: none;">{{ note.content|slice:"150:" }}</span>
+                <a href="javascript:void(0);" onclick="toggleReadMore('{{ note.id }}')" class="read-more-btn">Read more</a>
+                {% endif %}
+            </p>
+
+            <small>{{ note.created_at|date:"M d, Y H:i" }}</small>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <h3>No Notes</h3>
+{% endif %}
+
+<!-- JavaScript for Read More / Read Less -->
+<script>
+    function toggleReadMore(id) {
+        const content = document.getElementById(`note-${id}`);
+        const moreText = content.querySelector('.more-text');
+        const btn = content.querySelector('.read-more-btn');
+        const dots = content.querySelector('.dots');
+
+        if (moreText.style.display === "none") {
+            moreText.style.display = "inline";
+            dots.style.display = "none";
+            btn.textContent = "Read less";
+        } else {
+            moreText.style.display = "none";
+            dots.style.display = "inline";
+            btn.textContent = "Read more";
+        }
+    }
+</script>
+
+</body>
+</html>

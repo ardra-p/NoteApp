@@ -1,0 +1,63 @@
+
+{% include 'menu.html' %}
+{% load static %}
+{% if messages %}
+   <div id="msg-box" class="msg-box" style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+      {% for m in messages %}
+      {% if 'successs' in m.tags %}
+      <div style="min-width: 300px; max-width: 600px; height: 50px; text-align: center; background-color: rgb(154, 188, 168); border-radius: 8px;">
+         <p style="color: rgb(5, 67, 31); padding: 10px; margin: 0;">{{ m }}</p>
+      </div>
+      {% endif %}
+      {% endfor %}
+   </div>
+{% endif %}
+
+    <div class="container">
+    <img src="{% static 'image/note.png' %}" alt="NoteApp Icon">
+        
+        <h1>Welcome to NoteApp</h1>
+        <p>A minimal and distraction-free place to jot down your thoughts. Clean. Fast. Focused.</p>
+         <br>
+
+        <a href="{% url 'create' %}" class="create-note-btn">Create Notes</a>
+
+        <p>Start writing your thoughts and ideas. No limits.</p>
+         
+        <h2> Your Notes</h2>
+        <p>View, edit, and manage your existing notes anytime.</p>
+        {% if notes %}
+        <div class="note-headings" >
+            {% for note in notes %}
+        <a href="{% url 'notes' note.id %}" style="text-decoration: none; color:inherit"><div class="note-card" >{{ note.title }}</div></a>
+         {% endfor %}
+        </div>
+
+    </div>
+    <div class="pagination-boxes">
+    {% if notes.has_previous %}
+     <a href="?page={{ notes.previous_page_number }}" style="text-decoration: none; color:inherit"><div class="page-box">&lt;</div></a>
+    {% endif %}
+    {% for i in notes.paginator.page_range %}
+     <a href="?page={{ i }}" style="text-decoration: none; color:inherit"> <div class="page-box">{{ i }}</div></a>
+    {% endfor %}
+    {% if notes.has_next %}
+     <a href="?page={{ notes.next_page_number }}" style="text-decoration: none; color:inherit"> <div class="page-box">&gt;</div></a>
+    {% endif %}
+    {% else %}
+    <p>Start Writing your note</p>
+    {% endif %}
+</div>
+    
+
+
+     <script>
+    // Wait 3 seconds, then hide the message
+    setTimeout(function() {
+        const box = document.getElementById('msg-box');
+        if (box) {
+            box.style.display = 'none';
+        }
+    }, 3000); // 3000 milliseconds = 3 seconds
+
+</script>
