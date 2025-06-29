@@ -23,3 +23,6 @@ Welcome to **NoteApp**, a minimal, distraction-free web app built with Django wh
 - **Database**: SQLite (default)
 
 ---
+## 📸 Screenshot
+
+![NoteApp Screenshot](screenshot.png)
