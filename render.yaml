@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: note-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn note_app.wsgi:application
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: your-secret-key-here
+      - key: PYTHON_VERSION
+        value: 3.11
