@@ -1,6 +1,6 @@
 # NoteApp - A Simple Note-Taking Django App
 
-Welcome to **NoteApp**, a minimal, distraction-free web app built with Django where users can register, log in, and manage their personal notes. Each user has their own secure note section with create, update, delete, and view functionality.
+Welcome to **NoteApp**, a secure note management application built with Django and Django REST Framework. Users can register, authenticate using JWT tokens, and manage their personal notes through both a responsive web interface and RESTful APIs. The application provides user-specific note access, search functionality, pagination, and full CRUD operations while ensuring data privacy and security.
 
 ---
 
