@@ -6,19 +6,24 @@ Welcome to **NoteApp**, a minimal, distraction-free web app built with Django wh
 
 ### Features
 
--  User Registration & Login with validation
--  Create, Edit, and Delete notes
--  Each user has their own notes (private)
--  Light/Dark mode toggle (with localStorage)
--  Responsive HTML + CSS frontend
--  Form error messages and success notifications
--  Custom 404 error page
+- User Registration & Login with validation
+- JWT Authentication using Django REST Framework
+- Create, Edit, and Delete notes
+- REST API for Notes Management
+- Each user has their own notes (private)
+- Search and Pagination support in API
+- Light/Dark mode toggle (with localStorage)
+- Responsive HTML + CSS frontend
+- Form error messages and success notifications
+- Custom 404 error page
 
 ---
 
 ### Tech Stack
 
 - **Backend**: Django 5.2.3 (Python)
+- Django REST Framework (DRF)
+- Simple JWT Authentication
 - **Frontend**: HTML, CSS (with static files)
 - **Database**: SQLite (default)
 
