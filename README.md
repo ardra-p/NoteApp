@@ -21,7 +21,7 @@ Welcome to **NoteApp**, a minimal, distraction-free web app built with Django wh
 
 ### Tech Stack
 
-- **Backend**: Django 5.2.3 (Python)
+- **Backend**: Django 6.0.6 (Python)
 - Django REST Framework (DRF)
 - Simple JWT Authentication
 - **Frontend**: HTML, CSS (with static files)
